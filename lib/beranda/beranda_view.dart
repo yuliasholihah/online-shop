@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reseller/beranda/beranda_model.dart';
 import 'package:reseller/beranda/beranda_reseller_appbar.dart';
+import 'package:reseller/beranda/detail.dart';
 import 'package:reseller/constant.dart';
 import 'dart:async';
 
@@ -54,6 +55,7 @@ class _BerandaPageState extends State<BerandaPage> {
                   children: <Widget>[
                     _buildGoFoodFeatured(),
                     _buildMakeupFeatured(),
+                    _buildSepatuFeatured(),
                     _buildPromo()
                   ],
                 ),
@@ -245,24 +247,73 @@ class _BerandaPageState extends State<BerandaPage> {
   Widget _buildGoFoodFeatured() {
     return new Container(
       padding: EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 16.0),
+      child: Material(
+        child: InkWell(
+          onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+            builder: (BuildContext context) => new Detail(),
+          )),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              new Text(
+                "FASHION",
+                style: new TextStyle(fontFamily: "NeoSansBold"),
+              ),
+              new Padding(
+                padding: EdgeInsets.only(top: 8.0),
+              ),
+              new Text(
+                "Pilihan Terlaris",
+                style: new TextStyle(fontFamily: "NeoSansBold"),
+              ),
+              new SizedBox(
+                height: 172.0,
+                child: FutureBuilder<List>(
+                    future: fetchFood(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return new ListView.builder(
+                          itemCount: snapshot.data.length,
+                          padding: EdgeInsets.only(top: 12.0),
+                          physics: new ClampingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return _rowGoFoodFeatured(snapshot.data[index]);
+                          },
+                        );
+                      }
+                      return Center(
+                        child: SizedBox(
+                            width: 40.0,
+                            height: 40.0,
+                            child: const CircularProgressIndicator()),
+                      );
+                    }),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMakeupFeatured() {
+    return new Container(
+      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 16.0),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           new Text(
-            "FASHION",
+            "MAKEUP",
             style: new TextStyle(fontFamily: "NeoSansBold"),
           ),
           new Padding(
             padding: EdgeInsets.only(top: 8.0),
           ),
-          new Text(
-            "Pilihan Terlaris",
-            style: new TextStyle(fontFamily: "NeoSansBold"),
-          ),
           new SizedBox(
             height: 172.0,
             child: FutureBuilder<List>(
-                future: fetchFood(),
+                future: fetchmakeup(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return new ListView.builder(
@@ -288,14 +339,14 @@ class _BerandaPageState extends State<BerandaPage> {
     );
   }
 
-  Widget _buildMakeupFeatured() {
+  Widget _buildSepatuFeatured() {
     return new Container(
       padding: EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 16.0),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           new Text(
-            "MAKEUP",
+            "SEPATU",
             style: new TextStyle(fontFamily: "NeoSansBold"),
           ),
           new Padding(
@@ -304,7 +355,7 @@ class _BerandaPageState extends State<BerandaPage> {
           new SizedBox(
             height: 172.0,
             child: FutureBuilder<List>(
-                future: fetchmakeup(),
+                future: fetchsepatu(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return new ListView.builder(
@@ -518,6 +569,24 @@ class _BerandaPageState extends State<BerandaPage> {
     });
   }
 
+  Future<List<Food>> fetchsepatu() async {
+    List<Food> _goFoodFeaturedList = [];
+    _goFoodFeaturedList
+        .add(new Food(title: "Vans Pink", image: "assets/image/vanscewe.jpg"));
+    _goFoodFeaturedList
+        .add(new Food(title: "Adidas", image: "assets/image/das.jpg"));
+    _goFoodFeaturedList
+        .add(new Food(title: "Vans Green", image: "assets/image/vansaja.jpg"));
+    _goFoodFeaturedList
+        .add(new Food(title: "Vans Red", image: "assets/image/vansred.jpg"));
+    _goFoodFeaturedList
+        .add(new Food(title: "Filla", image: "assets/image/fi.jpg"));
+
+    return new Future.delayed(new Duration(seconds: 1), () {
+      return _goFoodFeaturedList;
+    });
+  }
+
   Future<List<Promo>> fetchPromo() async {
     List<Promo> _poromoList = [];
 
@@ -531,7 +600,7 @@ class _BerandaPageState extends State<BerandaPage> {
         image: "assets/image/pm2.jpg",
         title: "hari belanja NASIONAL!!",
         content:
-            "it's shopping time ini hari belanja nasional bagi kalian yang sering belanja online ayoo gabung segera",
+            "IT'S shopping time ini hari belanja nasional bagi kalian yang sering belanja online ayoo gabung segera",
         button: "SELENGKAPNYA"));
     _poromoList.add(new Promo(
         image: "assets/image/pm3.jpg",
