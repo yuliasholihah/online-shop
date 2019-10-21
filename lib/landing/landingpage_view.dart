@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reseller/beranda/beranda_view.dart';
+import 'package:reseller/beranda/detail.dart';
 import 'package:reseller/constant.dart';
 
 class LandingPage extends StatefulWidget {
@@ -9,9 +10,7 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   int _bottomNavCurrentIndex = 0;
-  List<Widget> _container = [
-    new BerandaPage(),
-  ];
+  List<Widget> _container = [new BerandaPage(), new Detail()];
 
   @override
   Widget build(BuildContext context) {

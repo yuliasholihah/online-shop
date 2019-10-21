@@ -6,6 +6,7 @@ import 'package:reseller/constant.dart';
 import 'dart:async';
 
 class BerandaPage extends StatefulWidget {
+  static String tag = 'beranda-page';
   @override
   _BerandaPageState createState() => new _BerandaPageState();
 }

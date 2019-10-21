@@ -15,8 +15,26 @@ class _DetailState extends State<Detail> {
           padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
           color: Colors.white,
           child: new Column(
-            children: <Widget>[_buildDetailAppBar(), _buildKonten()],
+            children: <Widget>[
+              _buildDetailAppBar(),
+              _buildKonten(),
+            ],
           )),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0, // this will be set when a new tab is tapped
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.person),
+            title: new Text('Akun'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.mail),
+            title: new Text('Inbox'),
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_basket), title: Text('Tambah Troli'))
+        ],
+      ),
     );
   }
 }
@@ -36,31 +54,20 @@ Widget _buildDetailAppBar() {
           child: new Row(
             children: <Widget>[
               new Container(
-                height: 28.0,
-                width: 28.0,
-                padding: EdgeInsets.all(6.0),
+                height: 35.0,
+                width: 35.0,
+                padding: EdgeInsets.all(7.0),
                 decoration: new BoxDecoration(
                     borderRadius:
                         new BorderRadius.all(new Radius.circular(100.0)),
                     color: Colors.orangeAccent),
                 alignment: Alignment.centerRight,
                 child: new Icon(
-                  Icons.local_bar,
+                  Icons.shopping_cart,
                   color: Colors.white,
-                  size: 16.0,
+                  size: 20.0,
                 ),
               ),
-              new Container(
-                padding: EdgeInsets.all(6.0),
-                decoration: new BoxDecoration(
-                    borderRadius:
-                        new BorderRadius.all(new Radius.circular(5.0)),
-                    color: Color(0x50FFD180)),
-                child: new Text(
-                  "DETAIL PRODUK",
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              )
             ],
           ),
         )
@@ -93,7 +100,7 @@ Widget _buildKonten() {
 
 Widget _rowKonten(Promo promo) {
   return new Container(
-    height: 320.0,
+    height: 400.0,
     child: new Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -124,12 +131,12 @@ Widget _rowKonten(Promo promo) {
         ),
         new Text(
           promo.content,
-          maxLines: 2,
+          maxLines: 7,
           softWrap: true,
           style: new TextStyle(color: Colors.grey, fontSize: 14.0),
         ),
         new Padding(
-          padding: EdgeInsets.only(top: 6.0),
+          padding: EdgeInsets.only(top: 20.0),
         ),
         new Container(
           alignment: Alignment.centerRight,
@@ -154,11 +161,10 @@ Future<List<Promo>> fetchKonten() async {
   List<Promo> _poromoList = [];
   _poromoList.add(new Promo(
       image: "assets/image/sw.jpg",
-      title: "SWEATER WANITA",
-      content: "Ukuran : ALL SIZE"
-          "Brand  : NO BRAND"
-          "Warna  : PUTIH,PINK,HITAM",
-      button: "BELI SEKARANG!"));
+      title: "SWEATER WANITA RP 35.000",
+      content:
+          "Ukuran : (ALL SIZE),SWEATER Multifungsi tersedia dalam ukuran M,L,XL dengan warna BIRU, PINK, PUTIH, dan HITAM. Warna yang terlihat pada foto sesuai dengan warna aslinya. Apabila terdapat perbedaan warna, disebabkan oleh pengaturan monitor dan efek cahaya pada layar monitor Anda",
+      button: "LIHAT PROMO!"));
 
   return new Future.delayed(new Duration(seconds: 3), () {
     return _poromoList;
