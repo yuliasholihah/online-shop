@@ -11,34 +11,76 @@ class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Container(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-          color: Colors.white,
-          child: new Column(
+        body: new Container(
+            padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+            color: Colors.white,
+            child: new Column(
+              children: <Widget>[
+                _buildDetailAppBar(),
+                _buildKonten(),
+              ],
+            )),
+        bottomNavigationBar: new Container(
+          width: MediaQuery.of(context).size.width,
+          height: 50.0,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              _buildDetailAppBar(),
-              _buildKonten(),
-            ],
-          )),
-      bottomNavigationBar: new Container(
-        color: Colors.white,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: new MaterialButton(
-                minWidth: 50.0,
-                height: 55.0,
-                onPressed: () {},
-                child: new Text(
-                  "PESAN SEKARANG",
+              Flexible(
+                fit: FlexFit.tight,
+                flex: 1,
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: Colors.green,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.add_shopping_cart,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 4.0,
+                        ),
+                        Text(
+                          "ADD TROLI",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                color: Colors.orange,
               ),
-            )
-          ],
-        ),
-      ),
-    );
+              Flexible(
+                flex: 2,
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: Colors.orange,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.shopping_basket,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 4.0,
+                        ),
+                        Text(
+                          "BELI SEKARANG",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
 
