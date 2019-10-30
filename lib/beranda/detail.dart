@@ -20,20 +20,23 @@ class _DetailState extends State<Detail> {
               _buildKonten(),
             ],
           )),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.person),
-            title: new Text('Akun'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.mail),
-            title: new Text('Inbox'),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket), title: Text('Tambah Troli'))
-        ],
+      bottomNavigationBar: new Container(
+        color: Colors.white,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: new MaterialButton(
+                minWidth: 50.0,
+                height: 55.0,
+                onPressed: () {},
+                child: new Text(
+                  "PESAN SEKARANG",
+                ),
+                color: Colors.orange,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -63,7 +66,7 @@ Widget _buildDetailAppBar() {
                     color: Colors.orangeAccent),
                 alignment: Alignment.centerRight,
                 child: new Icon(
-                  Icons.shopping_cart,
+                  Icons.add_shopping_cart,
                   color: Colors.white,
                   size: 20.0,
                 ),

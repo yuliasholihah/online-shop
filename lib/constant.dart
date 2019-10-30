@@ -16,10 +16,3 @@ class GojekPalette {
   static Color menuMart = Color(0xff68a9e3);
   static Color menuTix = Color(0xffe86f16);
 }
-
-class ColorPalette {
-  static const primaryColor = Color(0xff5364e8);
-  static const primaryDarkColor = Color(0xff607Cbf);
-  static const underlineTextField = Color(0xff8b97ff);
-  static const hintColor = Color(0xffccd1ff);
-}
